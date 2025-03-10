@@ -39,25 +39,28 @@ public class CustomUserDetailsService implements UserDetailsService {
         Optional<Provider> providerOpt = providerRepository.findByEmailIgnoreCase(email);
         if (providerOpt.isPresent()) {
             Provider provider = providerOpt.get();
-            logger.info("✅ Provider found: " + provider.getEmail() + " with role " + provider.getRole());
+            String role = provider.getRole().startsWith("ROLE_") ? provider.getRole() : "ROLE_" + provider.getRole();
+            logger.info("✅ Provider found: " + provider.getEmail() + " with role " + role);
             return new User(provider.getEmail(), provider.getPassword(),
-                    Collections.singletonList(new SimpleGrantedAuthority(provider.getRole())));
+                    Collections.singletonList(new SimpleGrantedAuthority(role)));
         }
 
         Optional<Nurse> nurseOpt = nurseRepository.findByEmailIgnoreCase(email);
         if (nurseOpt.isPresent()) {
             Nurse nurse = nurseOpt.get();
-            logger.info("✅ Nurse found: " + nurse.getEmail() + " with role " + nurse.getRole());
+            String role = nurse.getRole().startsWith("ROLE_") ? nurse.getRole() : "ROLE_" + nurse.getRole();
+            logger.info("✅ Nurse found: " + nurse.getEmail() + " with role " + role);
             return new User(nurse.getEmail(), nurse.getPassword(),
-                    Collections.singletonList(new SimpleGrantedAuthority(nurse.getRole())));
+                    Collections.singletonList(new SimpleGrantedAuthority(role)));
         }
 
         Optional<Patient> patientOpt = patientRepository.findByEmailIgnoreCase(email);
         if (patientOpt.isPresent()) {
             Patient patient = patientOpt.get();
-            logger.info("✅ Patient found: " + patient.getEmail() + " with role " + patient.getRole());
+            String role = patient.getRole().startsWith("ROLE_") ? patient.getRole() : "ROLE_" + patient.getRole();
+            logger.info("✅ Patient found: " + patient.getEmail() + " with role " + role);
             return new User(patient.getEmail(), patient.getPassword(),
-                    Collections.singletonList(new SimpleGrantedAuthority(patient.getRole())));
+                    Collections.singletonList(new SimpleGrantedAuthority(role)));
         }
 
         logger.warning("❌ User not found: " + email);

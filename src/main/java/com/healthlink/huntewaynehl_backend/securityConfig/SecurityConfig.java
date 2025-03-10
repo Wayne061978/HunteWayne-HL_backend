@@ -339,33 +339,36 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/home", "/Contact", "/aboutUs").permitAll()
-                        .requestMatchers("/patient_dashboard/patient").hasAuthority("PATIENT") // ✅ FIXED
-                        .requestMatchers("/nurse_dashboard/nurse").hasAuthority("NURSE") // ✅ FIXED
-                        .requestMatchers("/provider_dashboard/provider").hasAuthority("PROVIDER") // ✅ FIXED
+                        .requestMatchers("/patient_dashboard/patient").hasAuthority("ROLE_PATIENT") // ✅ Ensure correct role
+                        .requestMatchers("/nurse_dashboard/nurse").hasAuthority("ROLE_NURSE")
+                        .requestMatchers("/provider_dashboard/provider").hasAuthority("ROLE_PROVIDER")
                         .requestMatchers("/public/**", "/login", "/signup/**", "/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
-
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .successHandler(customAuthenticationSuccessHandler()) // Use success handler
+                        .successHandler(customAuthenticationSuccessHandler()) // ✅ Ensure correct redirect
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
+                )
+                .exceptionHandling(ex -> ex
+                        .accessDeniedPage("/access-denied") // ✅ Redirect to a custom access denied page
                 );
 
         return http.build();
     }
+
 
     @Bean
     public AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
         return (request, response, authentication) -> {
             String redirectUrl = "/";
             if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_PATIENT"))) {
-                redirectUrl = "/patientDashboard/patient";
+                redirectUrl = "/patient_dashboard/patient";
             } else if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_NURSE"))) {
                 redirectUrl = "/nurse_dashboard/nurse";
             } else if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_PROVIDER"))) {

@@ -1,4 +1,5 @@
 package com.healthlink.huntewaynehl_backend.controller;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import com.healthlink.huntewaynehl_backend.repository.NurseRepository;
 import com.healthlink.huntewaynehl_backend.repository.PatientRepository;
 import com.healthlink.huntewaynehl_backend.repository.ProviderRepository;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -27,8 +29,9 @@ public class DashboardController {
     @Autowired
     private ProviderRepository providerRepository;
 
-    @GetMapping("/dashboard")
-    public String showDashboard(Model model) {
+    // ✅ Handle Patient Dashboard
+    @GetMapping("/patient_dashboard/patient")
+    public String showPatientDashboard(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()) {
             System.out.println("User is not authenticated, redirecting to login...");
@@ -40,26 +43,48 @@ public class DashboardController {
 
         Optional<Patient> patient = patientRepository.findByEmailIgnoreCase(email);
         if (patient.isPresent()) {
-            model.addAttribute("patient", patient);
-            System.out.println("Redirecting to patient-dashboard");
-            return "patientDashboard";
+            model.addAttribute("userName", patient.get().getFirstName());
+            model.addAttribute("appointments", new ArrayList<>()); // Example empty list
+            System.out.println("✅ Redirecting to patient-dashboard.html");
+            return "patient_dashboard"; // ✅ Make sure this matches the Thymeleaf file name
         }
 
+        return "redirect:/login";
+    }
+
+    // ✅ Handle Nurse Dashboard
+    @GetMapping("/nurse_dashboard/nurse")
+    public String showNurseDashboard(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return "redirect:/login";
+        }
+
+        String email = authentication.getName();
         Optional<Nurse> nurse = nurseRepository.findByEmailIgnoreCase(email);
         if (nurse.isPresent()) {
-            model.addAttribute("nurse", nurse);
-            System.out.println("Redirecting to nurse-dashboard");
-            return "nurse_dashboard";
+            model.addAttribute("nurse", nurse.get());
+            return "nurse_dashboard"; // ✅ Correct Thymeleaf file name
         }
 
+        return "redirect:/login";
+    }
+
+    // ✅ Handle Provider Dashboard
+    @GetMapping("/provider_dashboard/provider")
+    public String showProviderDashboard(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return "redirect:/login";
+        }
+
+        String email = authentication.getName();
         Optional<Provider> provider = providerRepository.findByEmailIgnoreCase(email);
         if (provider.isPresent()) {
-            model.addAttribute("provider", provider);
-            System.out.println("Redirecting to provider-dashboard");
-            return "provider_dashboard";
+            model.addAttribute("provider", provider.get());
+            return "provider_dashboard"; // ✅ Correct Thymeleaf file name
         }
 
-        System.out.println("No user found, redirecting to login...");
         return "redirect:/login";
     }
 }

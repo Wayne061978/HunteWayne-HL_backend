@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Provider Dashboard</title>
-    <script th:src="@{/resources/static/css/app.js}"></script>
-    <link rel="stylesheet" th:href="@{/HL.css/providerdashboard.css}">
+<!--    <script th:src="@{/resources/static/css/app.js}"></script>-->
+    <link rel="stylesheet" th:href="@{/css/css/style.css}">
 </head>
 <body>
 <header>
     <h1>Welcome, Provider</h1>
-    <a th:href="@{/logout}" class="logout-btn">Logout</a>
+
 </header>
 
 <main class="container">
@@ -86,5 +86,8 @@
         </table>
     </section>
 </main>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>
