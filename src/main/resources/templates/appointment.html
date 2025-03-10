@@ -10,11 +10,12 @@
 <body>
 
 <!-- Logo -->
-<img th:src="@{/images/s.logo.png}" alt="HealthLink Logo">
+<!--<img th:src="@{/images/1Small.png}" alt="HealthLink Logo">-->
 
 <header>
+    <img width="180"  th:src="@{css/images/1Small.png}" alt="HealthLink Logo">
     <h1>Schedule an Appointment</h1>
-    <a th:href="@{/patient_dashboard.html}">Back to Dashboard</a>
+    <a th:href="@{/patient_dashboard}">Back to Dashboard</a>
 </header>
 
 <main>
@@ -44,3 +45,61 @@
 
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>HealthLink - Appointment</title>-->
+<!--    <link rel="stylesheet" th:href="@{/css/css/login.css}">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="main-container">-->
+<!--    <header>-->
+<!--        <nav>-->
+<!--            <ul>-->
+<!--                <li><a th:href="@{/}">Home</a></li>-->
+<!--                <li><a th:href="@{/signup}">Sign Up</a><li>-->
+<!--                <li><a th:href="@{/aboutUs}">About</a></li>-->
+<!--                <li><a th:href="@{/Contact}">Contact</a></li>-->
+<!--                <li><a th:href="@{/patient_dashboard.html}">Back to Dashboard</a></li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+<!--&lt;!&ndash;        <a th:href="@{/patient_dashboard.html}">Back to Dashboard</a>&ndash;&gt;-->
+<!--    </header>-->
+
+<!--    <main>-->
+<!--        <img width="280" th:src="@{css/images/1Small.png}" alt="HealthLink Logo">-->
+
+<!--        <form th:action="@{/schedule}" method="POST">-->
+
+<!--            &lt;!&ndash; Dynamic Provider Selection &ndash;&gt;-->
+<!--            <label for="provider">Select Provider:</label>-->
+<!--            <select id="provider" name="provider" required>-->
+<!--                <option th:each="doctor : ${providers}"-->
+<!--                        th:value="${doctor.id}"-->
+<!--                        th:text="${doctor.name}">-->
+<!--                </option>-->
+<!--            </select>-->
+
+<!--            &lt;!&ndash; Date Selection &ndash;&gt;-->
+<!--            <label for="date">Date:</label>-->
+<!--            <input type="date" id="date" name="date" required>-->
+
+<!--            &lt;!&ndash; Time Selection &ndash;&gt;-->
+<!--            <label for="time">Time:</label>-->
+<!--            <input type="time" id="time" name="time" required>-->
+
+<!--            &lt;!&ndash; Submit Button &ndash;&gt;-->
+<!--            <button type="submit">Schedule</button>-->
+<!--        </form>-->
+<!--    </main>-->
+
+<!--    <footer>-->
+<!--        <p>&copy; 2024 HealthLink. All rights reserved.</p>-->
+<!--    </footer>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

@@ -29,7 +29,7 @@ public class DashboardController {
     @Autowired
     private ProviderRepository providerRepository;
 
-    // ✅ Handle Patient Dashboard
+    //  Handle Patient Dashboard
     @GetMapping("/patient_dashboard/patient")
     public String showPatientDashboard(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -45,14 +45,16 @@ public class DashboardController {
         if (patient.isPresent()) {
             model.addAttribute("userName", patient.get().getFirstName());
             model.addAttribute("appointments", new ArrayList<>()); // Example empty list
-            System.out.println("✅ Redirecting to patient-dashboard.html");
-            return "patient_dashboard"; // ✅ Make sure this matches the Thymeleaf file name
+
+
+            System.out.println(" Redirecting to patient-dashboard.html");
+            return "patient_dashboard"; //  Make sure this matches the Thymeleaf file name
         }
 
         return "redirect:/login";
     }
 
-    // ✅ Handle Nurse Dashboard
+    // Handle Nurse Dashboard
     @GetMapping("/nurse_dashboard/nurse")
     public String showNurseDashboard(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -64,13 +66,13 @@ public class DashboardController {
         Optional<Nurse> nurse = nurseRepository.findByEmailIgnoreCase(email);
         if (nurse.isPresent()) {
             model.addAttribute("nurse", nurse.get());
-            return "nurse_dashboard"; // ✅ Correct Thymeleaf file name
+            return "nurse_dashboard";
         }
 
         return "redirect:/login";
     }
 
-    // ✅ Handle Provider Dashboard
+    //  Handle Provider Dashboard
     @GetMapping("/provider_dashboard/provider")
     public String showProviderDashboard(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -82,9 +84,14 @@ public class DashboardController {
         Optional<Provider> provider = providerRepository.findByEmailIgnoreCase(email);
         if (provider.isPresent()) {
             model.addAttribute("provider", provider.get());
-            return "provider_dashboard"; // ✅ Correct Thymeleaf file name
+            return "provider_dashboard"; //  Correct Thymeleaf file name
         }
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/patient_dashboard")
+    public String showPatientDashboard() {
+        return "patient_dashboard"; // No need to add .html
     }
 }

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealthLink - Dashboard</title>
-    <link rel="stylesheet" th:href="@{/css/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/css/pDashboard.css}">
 </head>
 <body>
+<div class="main-container">
 <header>
     <h1>Dashboard</h1>
     <nav>
@@ -28,6 +29,6 @@
 <form th:action="@{/logout}" method="post">
     <button type="submit">Logout</button>
 </form>
-
+</div>
 </body>
 </html>

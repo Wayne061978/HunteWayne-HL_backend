@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthLink - Appointment</title>
+    <link rel="stylesheet" th:href="@{/css/css/login.css}">
+</head>
+<body>
+<div class="main-container">
+    <header>
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/signup}">Sign Up</a><li>
+                <li><a th:href="@{/aboutUs}">About</a></li>
+                <li><a th:href="@{/Contact}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <img width="280" th:src="@{css/images/1Small.png}" alt="HealthLink Logo">
+
+        <form th:action="@{/schedule}" method="POST">
+
+            <!-- Dynamic Provider Selection -->
+            <label for="provider">Select Provider:</label>
+            <select id="provider" name="provider" required>
+                <option th:each="doctor : ${providers}"
+                        th:value="${doctor.id}"
+                        th:text="${doctor.name}">
+                </option>
+            </select>
+
+            <!-- Date Selection -->
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <!-- Time Selection -->
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <!-- Submit Button -->
+            <button type="submit">Schedule</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 HealthLink. All rights reserved.</p>
+    </footer>
+</div>
+</body>
+</html>
