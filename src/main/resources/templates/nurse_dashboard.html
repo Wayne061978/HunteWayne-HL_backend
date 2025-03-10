@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nurse Dashboard</title>
+  <link rel="stylesheet" th:href="@{/HL.css/style.css}">
+</head>
+<body>
+<h1>Welcome, <span th:text="${nurse.name}"></span></h1>
+<h2>Your Dashboard</h2>
+<p>Manage your patients and appointments here.</p>
+<a th:href="@{/nurse_login}">Logout</a>
+</body>
+</html>

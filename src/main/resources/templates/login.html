@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthLink - Login</title>
+  <link rel="stylesheet" th:href="@{/css/css/login.css}">
+  <script th:inline="javascript">
+    function validateForm(event) {
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+      let emailError = document.getElementById("email-error");
+      let passwordError = document.getElementById("password-error");
+      let valid = true;
+
+      // Email Validation
+      let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        emailError.textContent = "Invalid email format (e.g., user@example.com).";
+        emailError.style.color = "red";
+        valid = false;
+      } else {
+        emailError.textContent = "";
+      }
+
+      // Password Validation
+      let passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|(?=.*\W)).{8,}$/;
+      if (!passwordPattern.test(password)) {
+        passwordError.textContent = "Password must be at least 8 characters, contain uppercase, lowercase, and a number or special character.";
+        passwordError.style.color = "red";
+        valid = false;
+      } else {
+        passwordError.textContent = "";
+      }
+
+      // Prevent form submission if invalid
+      if (!valid) {
+        event.preventDefault();
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="main-container">
+  <header>
+    <nav>
+      <ul>
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/signup}">Sign Up</a><li>
+        <li><a th:href="@{/aboutUs}">About</a></li>
+        <li><a th:href="@{/Contact}">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <img width="280" th:src="@{css/images/1Small.png}" alt="HealthLink Logo">
+
+    <form id="login-form" th:action="@{/login}" method="POST" onsubmit="validateForm(event)">
+      <h2>Login</h2>
+
+      <!-- Email Input -->
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <small id="email-error" class="error-message"></small>
+      </div>
+
+      <!-- Password Input -->
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <small id="password-error" class="error-message"></small>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <!-- Thymeleaf Error Messages -->
+      <p th:if="${param.error}" style="color: red;">Invalid email or password. Please try again.</p>
+      <p th:if="${param.logout}" style="color: green;">You have been successfully logged out.</p>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 HealthLink. All rights reserved.</p>
+  </footer>
+</div>
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>HealthLink - Login</title>-->
+<!--  <link rel="stylesheet" th:href="@{/css/css/login.css}">-->
+<!--  <script th:inline="javascript">-->
+<!--    function validateForm(event) {-->
+<!--      let email = document.getElementById("email").value;-->
+<!--      let password = document.getElementById("password").value;-->
+<!--      let role = document.getElementById("role").value;-->
+<!--      let emailError = document.getElementById("email-error");-->
+<!--      let passwordError = document.getElementById("password-error");-->
+<!--      let roleError = document.getElementById("role-error");-->
+<!--      let valid = true;-->
+
+<!--      // Email Validation-->
+<!--      let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;-->
+<!--      if (!emailPattern.test(email)) {-->
+<!--        emailError.textContent = "Invalid email format (e.g., user@example.com).";-->
+<!--        emailError.style.color = "red";-->
+<!--        valid = false;-->
+<!--      } else {-->
+<!--        emailError.textContent = "";-->
+<!--      }-->
+
+<!--      // Password Validation-->
+<!--      let passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|(?=.*\W)).{8,}$/;-->
+<!--      if (!passwordPattern.test(password)) {-->
+<!--        passwordError.textContent = "Password must be at least 8 characters, contain uppercase, lowercase, and a number or special character.";-->
+<!--        passwordError.style.color = "red";-->
+<!--        valid = false;-->
+<!--      } else {-->
+<!--        passwordError.textContent = "";-->
+<!--      }-->
+
+<!--      // Role Validation-->
+<!--      if (role === "") {-->
+<!--        roleError.textContent = "Please select a role.";-->
+<!--        roleError.style.color = "red";-->
+<!--        valid = false;-->
+<!--      } else {-->
+<!--        roleError.textContent = "";-->
+<!--      }-->
+
+<!--      // Prevent form submission if invalid-->
+<!--      if (!valid) {-->
+<!--        event.preventDefault();-->
+<!--      }-->
+<!--    }-->
+<!--  </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="main-container">-->
+<!--  <header>-->
+<!--    <nav>-->
+<!--      <ul>-->
+<!--        <li><a th:href="@{/}">Home</a></li>-->
+<!--        <li><a th:href="@{/signup}">Sign Up</a></li>-->
+<!--        <li><a th:href="@{/contact}">Contact</a></li>-->
+<!--        <li><a th:href="@{/about}">About</a></li>-->
+<!--      </ul>-->
+<!--    </nav>-->
+<!--  </header>-->
+
+<!--  <main>-->
+<!--    <img width="280" th:src="@{css/images/1Small.png}" alt="HealthLink Logo">-->
+
+<!--    <form id="login-form" th:action="@{/login}" method="POST" onsubmit="validateForm(event)">-->
+<!--      <h2>Login</h2>-->
+
+<!--      &lt;!&ndash; Email Input &ndash;&gt;-->
+<!--      <div>-->
+<!--        <label for="email">Email:</label>-->
+<!--        <input type="email" id="email" name="email" placeholder="Enter your email" required>-->
+<!--        <small id="email-error" class="error-message"></small>-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash; Password Input &ndash;&gt;-->
+<!--      <div>-->
+<!--        <label for="password">Password:</label>-->
+<!--        <input type="password" id="password" name="password" placeholder="Enter your password" required>-->
+<!--        <small id="password-error" class="error-message"></small>-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash; Role Selection &ndash;&gt;-->
+<!--      <div>-->
+<!--        <label for="role">Role:</label>-->
+<!--        <select id="role" name="role" required>-->
+<!--          <option value="" disabled selected>Select your role</option>-->
+<!--          <option value="PATIENT">Patient</option>-->
+<!--          <option value="NURSE">Nurse</option>-->
+<!--          <option value="PROVIDER">Provider</option>-->
+<!--        </select>-->
+<!--        <small id="role-error" class="error-message"></small>-->
+<!--      </div>-->
+
+<!--      <button type="submit">Login</button>-->
+
+<!--      &lt;!&ndash; Thymeleaf Error Messages &ndash;&gt;-->
+<!--      <p th:if="${param.error}" style="color: red;">Invalid email, password, or role. Please try again.</p>-->
+<!--      <p th:if="${param.logout}" style="color: green;">You have been successfully logged out.</p>-->
+<!--    </form>-->
+<!--  </main>-->
+
+<!--  <footer>-->
+<!--    <p>&copy; 2024 HealthLink. All rights reserved.</p>-->
+<!--  </footer>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Login</title>-->
+<!--  <link rel="stylesheet" th:href="@{/css/css/login.css}">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="main-container">-->
+<!--  <header>-->
+<!--    <nav>-->
+<!--      <ul>-->
+<!--        <li><a th:href="@{/}">Home</a></li>-->
+<!--        <li><a th:href="@{/signup}">Sign Up</a></li>-->
+<!--        <li><a th:href="@{/aboutUs}">About</a></li>-->
+<!--        <li><a th:href="@{/Contact}">Contact</a></li>-->
+<!--      </ul>-->
+<!--    </nav>-->
+<!--  </header>-->
+
+<!--  <img width="280" th:src="@{/css/images/1Small.png}" alt="HealthLink Logo">-->
+<!--  <h1>Login</h1>-->
+
+<!--  <div th:if="${error}" class="alert alert-danger">-->
+<!--    <span th:text="${error}"></span>-->
+<!--  </div>-->
+
+<!--  <form th:action="@{/login}" method="POST">-->
+<!--    <label for="email">Email:</label>-->
+<!--    <input type="email" id="email" name="email" placeholder="Enter Email" required><br>-->
+
+<!--    <label for="password">Password:</label>-->
+<!--    <input type="password" id="password" name="password" placeholder="Enter Password" required><br>-->
+
+<!--    <button type="submit">Login</button>-->
+<!--  </form>-->
+
+<!--  <p>Don't have an account? <a th:href="@{/signup}">Sign up here</a></p>-->
+
+<!--  <footer>-->
+<!--    <p>&copy; 2024 HealthLink. All Rights Reserved.</p>-->
+<!--  </footer>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

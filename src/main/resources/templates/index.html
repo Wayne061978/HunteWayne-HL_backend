@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HealthLink</title>
+  <link rel="icon" th:href="@{/images/2.png}">
+  <link rel="stylesheet" th:href="@{/css/css/style.css}">
+</head>
+<body>
+<!-- Header -->
+<header>
+  <img width="180"  th:src="@{css/images/1Small.png}" alt="HealthLink Logo">
+  <nav>
+    <ul>
+      <li><a th:href="@{/}">Home</a></li>
+      <li><a href="#Our-Services">Services</a></li>
+      <li><a href="#">Doctors</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a th:href="@{/Contact}">Contact</a></li>
+      <li><a th:href="@{/aboutUs}">About</a></li>
+    </ul>
+  </nav>
+  <a th:href="@{/signup}" class="cta">Sign Up</a>
+  <a th:href="@{/login}" class="cta">Login</a>
+</header>
+
+<section class="online-doctor">
+  <div class="online-doctor-content">
+    <h2>Meet With an Online Doctor</h2>
+    <p>Talk to a board-certified primary care doctor from your phone or computer. Our online doctors are graduates from the top 50 U.S. medical schools and have an average of 15 years of experience.</p>
+    <ul>
+      <li><strong>Top quality, board-certified doctors</strong></li>
+      <li><strong>Insurance accepted, but not required</strong></li>
+      <li><strong>Prescriptions sent to your local pharmacy*</strong></li>
+    </ul>
+    <a th:href="@{/signup}" class="cta">Book an Appointment</a>
+  </div>
+  <div class="online-doctor-image">
+    <img th:src="@{/css/images/GettyImages-1399396111.jpg}" alt="Online Doctor Consultation">
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works">
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <img th:src="@{css/images/Top Online Doctors _ Step 1.webp}" alt="Sign Up">
+      <h3>Step 1 Sign Up</h3>
+      <p>Create an account in minutes.</p>
+    </div>
+    <div class="step">
+      <img th:src="@{css/images/Top Online Doctors _ Step 2.webp}" alt="Choose Doctor">
+      <h3>Step 2 Choose a Doctor</h3>
+      <p>Select from a variety of healthcare professionals.</p>
+    </div>
+    <div class="step">
+      <img th:src="@{css/images/Top Online Doctors _ Step 3.webp}" alt="Consult">
+      <h3>Step 3 Consult</h3>
+      <p>Talk to your doctor via video or chat.</p>
+    </div>
+  </div>
+</section>
+
+<section id="Our-Services">
+  <!-- <header class="jumbotron text-center text-white" style="background:#007bff;"> -->
+  <h1 class="how-it-works" style="background-color: #007bff;">Our Services</h1>
+  <p style="display: flex; justify-content: center; align-items: center; font-size: 20px; color: #007bff; font-weight: bold; margin-bottom: 20px;">Explore the wide range of telehealth services we offer to keep you healthy and connected.</p>
+
+  <!-- Services Section -->
+  <main class="container mt-5">
+    <div class="row">
+      <!-- Service 1 -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img class="card-img-top"th:src="@{css/images/card3 (Custom).jpg}" alt="Secure Video Consultations">
+          <!-- <div class="card-body"> -->
+          <h5 class="card-title">Secure Video Consultations</h5>
+          <p class="card-text">Connect with healthcare providers via HIPAA-compliant video sessions from the comfort of your home.</p>
+          <!-- </div> -->
+        </div>
+      </div>
+      <!-- Service 2 -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img class="card-img-top" th:src="@{css/images/card1 (Custom).jpg}" alt="Appointment Scheduling">
+          <div class="card-body">
+            <h5 class="card-title">Appointment Scheduling</h5>
+            <p class="card-text">Book, reschedule, and manage your appointments seamlessly with our user-friendly scheduling system.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Service 3 -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img class="card-img-top" th:src="@{css/images/card6 (Custom).jpg}" alt="Electronic Health Records">
+          <div class="card-body">
+            <h5 class="card-title">Electronic Health Records</h5>
+            <p class="card-text">Access your medical records securely online and stay informed about your health anytime, anywhere.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Service 4 -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img class="card-img-top" th:src="@{css/images/card5 (Custom).jpg}" alt="Mental Health Counseling">
+          <div class="card-body">
+            <h5 class="card-title">Mental Health Counseling</h5>
+            <p class="card-text">Get professional mental health support with licensed therapists through private, online sessions.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Service 5 -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img class="card-img-top" th:src="@{css/images/card4 (Custom).jpg}" alt="Prescription Management">
+          <div class="card-body">
+            <h5 class="card-title">Prescription Management</h5>
+            <p class="card-text">Receive prescriptions and medication reminders directly through the platform for your convenience.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Service 6 -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img class="card-img-top" th:src="@{css/images/card8.jpg}" alt="Chronic Disease Monitoring">
+          <div class="card-body">
+            <h5 class="card-title">Chronic Disease Monitoring</h5>
+            <p class="card-text">Monitor chronic conditions like diabetes or hypertension remotely with real-time data tracking.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</section>
+<section class="online-doctor-faqs">
+  <h2>Online Doctor FAQs</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <button class="faq-question">Can I get a prescription without seeing a doctor?</button>
+      <div class="faq-answer">
+        <p>Generally, a prescription requires a consultation with a licensed doctor. However, for certain conditions, an online doctor may prescribe medications after an evaluation.</p>
+      </div>
+  </div>
+    <div class="faq-item">
+      <button class="faq-question">Can I order a prescription online?</button>
+      <div class="faq-answer">
+        <p>Yes, once an online consultation is completed, your prescription can be sent directly to your local pharmacy.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Can online doctors prescribe antibiotics?</button>
+      <div class="faq-answer">
+        <p>Yes, online doctors can prescribe antibiotics, but only if it's deemed appropriate after an evaluation.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">How can I get a prescription fast?</button>
+      <div class="faq-answer">
+        <p>After completing your consultation, the prescription can be sent to your pharmacy within minutes for quick processing.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Do online doctors work?</button>
+      <div class="faq-answer">
+        <p>Yes, online doctors are board-certified professionals who can diagnose and treat a wide variety of conditions effectively through video consultations.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">What is the best online doctor?</button>
+      <div class="faq-answer">
+        <p>The best online doctor is one that is licensed, highly rated, and has expertise in the area you need help with. Our doctors are graduates from top U.S. medical schools and have years of experience.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Do I need insurance to see an online doctor?</button>
+      <div class="faq-answer">
+        <p>No, insurance is not required to see an online doctor. We offer affordable options regardless of insurance status.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">What if I need a lab test?</button>
+      <div class="faq-answer">
+        <p>If you need lab tests, the online doctor can guide you on where to go for testing, or they may refer you to a local facility.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">How much does an online doctor cost?</button>
+      <div class="faq-answer">
+        <p>Costs vary depending on the consultation type. We offer competitive pricing and even have free consultation options available for certain conditions.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials">
+  <section class="testimonials">
+    <h2>What Our Patients Are Saying</h2>
+    <div class="testimonial">
+      <p>"HealthLink has changed my life. I can now see a doctor without leaving home!"</p>
+      <p>- Jane Doe</p>
+    </div>
+    <div class="testimonial">
+      <p>"Quick, easy, and affordable. Highly recommend!"</p>
+      <p>- John Smith</p>
+    </div>
+  </section>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a th:href="@{/contact}">Contact</a>
+  </div>
+  <p>&copy; 2024 HealthLink. All Rights Reserved.</p>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+
+      question.addEventListener('click', () => {
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

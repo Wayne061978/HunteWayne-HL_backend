@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Health Link</title>
+  <link rel="stylesheet" th:href="@{/css/css/contact.css}">
+</head>
+<body>
+
+<header>
+  <img width="100" th:src="@{css/images/1Small.png}" alt="HealthLink Logo">
+  <nav>
+    <ul>
+      <li><a th:href="@{/}">Home</a></li>
+      <li><a th:href="@{/signup}">Sign Up</a><li>
+      <li><a th:href="@{/login}">Login</a></li>
+      <li><a th:href="@{/aboutUs}">About</a></li>
+      <li><a th:href="@{/Contact}">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+  <section class="hero">
+    <h1>Contact Us</h1>
+    <p>Have questions? Reach out to us.</p>
+  </section>
+
+
+<section class="contact">
+  <div class="container">
+    <h2>Get in Touch</h2>
+    <form th:action="@{/submit_contact_form}" method="POST">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Your Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button class="cta" type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <div class="contact-info">
+    <h3>Other Ways to Reach Us</h3>
+    <p>📍 <strong>Address:</strong> 123 Health Street, Virtual City</p>
+    <p>📞 <strong>Phone:</strong> +1 (800) 555-1234</p>
+    <p>📧 <strong>Email:</strong> support@healthlink.com</p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2024 Health Link. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

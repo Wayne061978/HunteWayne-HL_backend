@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Signup</title>
+    <link rel="stylesheet" th:href="@{/css/css/signup.css}">
+    <script>
+        function showFormBasedOnRole() {
+            const role = document.getElementById("role").value;
+            const forms = ["provider-form", "nurse-form", "patient-form"];
+            forms.forEach(form => document.getElementById(form).style.display = "none");
+            if (role) {
+                document.getElementById(`${role.toLowerCase()}-form`).style.display = "block";
+            }
+        }
+
+        function validatePasswords(formId) {
+            const password = document.querySelector(`#${formId} input[name='password']`).value;
+            const confirmPassword = document.querySelector(`#${formId} input[name='confirm-password']`).value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<div class="main-container">
+    <div th:if="${message}" class="alert alert-success">
+        <span th:text="${message}"></span>
+    </div>
+    <header>
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/login}">Login</a></li>
+                <li><a th:href="@{/aboutUs}">About</a></li>
+                <li><a th:href="@{/Contact}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <img width="280" th:src="@{/css/images/1Small.png}" alt="HealthLink Logo">
+    <h1>User Signup</h1>
+
+    <label for="role">Role:</label>
+    <select id="role" name="role" onchange="showFormBasedOnRole()" required>
+        <option value="">Select Role</option>
+        <option value="PROVIDER">Provider</option>
+        <option value="NURSE">Nurse</option>
+        <option value="PATIENT">Patient</option>
+    </select><br><br>
+
+    <div id="provider-form" style="display:none;">
+        <form th:action="@{/signup/providers}" method="POST" onsubmit="return validatePasswords('provider-form')">
+            <h2>Provider Signup</h2>
+            <label for="provider-name">Name:</label>
+            <input type="text" id="provider-name" name="name" placeholder="Enter Full Name" required><br>
+
+            <label for="provider-email">Email:</label>
+            <input type="email" id="provider-email" name="email" placeholder="Enter Email" required><br>
+
+            <label for="provider-password">Password:</label>
+            <input type="password" id="provider-password" name="password" placeholder="Enter Password" required
+                   pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|(?=.*\W)).{8,}$"
+                   title="Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, and a number or special character."><br>
+
+            <label for="P-confirm-password">Confirm Password:</label>
+            <input type="password" id="P-confirm-password" name="confirm-password" placeholder="Confirm Password" required><br>
+
+            <label for="provider-license">License Number:</label>
+            <input type="text" id="provider-license" name="license" placeholder="Enter License Number" required><br>
+
+            <label for="provider-specialization">Specialization:</label>
+            <input type="text" id="provider-specialization" name="specialization" placeholder="Enter Specialization"><br>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <div id="nurse-form" style="display:none;">
+        <form th:action="@{/signup/nurses}" method="POST"  onsubmit="return validatePasswords('nurse-form')">
+            <h2>Nurse Signup</h2>
+            <label for="nurse-name">Name:</label>
+            <input type="text" id="nurse-name" name="name" placeholder="Enter Full Name" required><br>
+
+            <label for="nurse-email">Email:</label>
+            <input type="email" id="nurse-email" name="email" placeholder="Enter Email" required><br>
+
+            <label for="nurse-password">Password:</label>
+            <input type="password" id="nurse-password" name="password" placeholder="Enter Password" required
+                   pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|(?=.*\W)).{8,}$"
+                   title="Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, and a number or special character."><br>
+
+            <label for="N-confirm-password">Confirm Password:</label>
+            <input type="password" id="N-confirm-password" name="confirm-password" placeholder="Confirm Password" required><br>
+
+            <label for="employeeId">Employee ID:</label>
+            <input type="text" id="employeeId" name="EmployeeID" placeholder="Enter Employee ID" required><br>
+
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" placeholder="Enter Department"><br>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <div id="patient-form" style="display:none;">
+        <form th:action="@{/signup/patients}" method="POST"  onsubmit="return validatePasswords('patient-form')">
+            <h2>Patient Signup</h2>
+            <label for="patient-firstName">First Name:</label>
+            <input type="text" id="patient-firstName" name="firstName" placeholder="Enter First Name" required><br>
+
+            <label for="patient-lastName">Last Name:</label>
+            <input type="text" id="patient-lastName" name="lastName" placeholder="Enter Last Name" required><br>
+
+            <label for="patient-email">Email:</label>
+            <input type="email" id="patient-email" name="email" placeholder="Enter Email" required><br>
+
+            <label for="patient-password">Password:</label>
+            <input type="password" id="patient-password" name="password" placeholder="Enter Password" required
+                   pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|(?=.*\W)).{8,}$"
+                   title="Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, and a number or special character."><br>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required><br>
+
+            <label for="patient-dob">Date of Birth:</label>
+            <input type="date" id="patient-dob" name="dob" required><br>
+
+            <label for="patient-gender">Gender:</label>
+            <select id="patient-gender" name="gender" required>
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br>
+
+            <label for="patient-phone">Phone Number:</label>
+            <input type="tel" id="patient-phone" name="phone" placeholder="Enter Phone" required><br>
+
+            <label for="patient-address">Address:</label>
+            <input type="text" id="patient-address" name="address" placeholder="Enter Address" required><br>
+
+            <label for="patient-insurance">Insurance:</label>
+            <input type="text" id="patient-insurance" name="insurance" placeholder="Enter Insurance Details"><br>
+
+            <label for="patient-ssn">Social Security Number:</label>
+            <input type="text" id="patient-ssn" name="ssn" placeholder="Enter SSN"><br>
+
+            <button type="submit">Sign Up</button>
+
+        </form>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2024 HealthLink. All Rights Reserved.</p>
+    </footer>
+</div>
+<!--<script src="/css/js/Signup%20Form%20Validation.js"></script>-->
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Signup</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Signup</h1>-->
+<!--<form action="/api/auth/signup" method="POST">-->
+<!--    <label for="firstName">First Name:</label>-->
+<!--    <input type="text" id="firstName" name="firstName" required>-->
+<!--    <br>-->
+
+<!--    <label for="lastName">Last Name:</label>-->
+<!--    <input type="text" id="lastName" name="lastName" required>-->
+<!--    <br>-->
+
+<!--    <label for="email">Email:</label>-->
+<!--    <input type="email" id="email" name="email" required>-->
+<!--    <br>-->
+
+<!--    <label for="password">Password:</label>-->
+<!--    <input type="password" id="password" name="password" required>-->
+<!--    <br>-->
+
+<!--    <label for="role">Role:</label>-->
+<!--    <select id="role" name="role" required>-->
+<!--        <option value="patient">Patient</option>-->
+<!--        <option value="nurse">Nurse</option>-->
+<!--        <option value="provider">Provider</option>-->
+<!--    </select>-->
+<!--    <br>-->
+
+<!--    &lt;!&ndash; Fields for Patient &ndash;&gt;-->
+<!--    <div id="patientFields" style="display:none;">-->
+<!--        <label for="dob">Date of Birth:</label>-->
+<!--        <input type="date" id="dob" name="dob">-->
+<!--        <br>-->
+
+<!--        <label for="gender">Gender:</label>-->
+<!--        <input type="text" id="gender" name="gender">-->
+<!--        <br>-->
+
+<!--        <label for="phone">Phone Number:</label>-->
+<!--        <input type="text" id="phone" name="phone">-->
+<!--        <br>-->
+
+<!--        <label for="address">Address:</label>-->
+<!--        <input type="text" id="address" name="address">-->
+<!--        <br>-->
+
+<!--        <label for="insurance">Insurance:</label>-->
+<!--        <input type="text" id="insurance" name="insurance">-->
+<!--        <br>-->
+
+<!--        <label for="ssn">SSN:</label>-->
+<!--        <input type="text" id="ssn" name="ssn">-->
+<!--        <br>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Fields for Nurse &ndash;&gt;-->
+<!--    <div id="nurseFields" style="display:none;">-->
+<!--        <label for="employeeId">Employee ID:</label>-->
+<!--        <input type="text" id="employeeId" name="employeeId">-->
+<!--        <br>-->
+
+<!--        <label for="department">Department:</label>-->
+<!--        <input type="text" id="department" name="department">-->
+<!--        <br>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Fields for Provider &ndash;&gt;-->
+<!--    <div id="providerFields" style="display:none;">-->
+<!--        <label for="licenseNumber">License Number:</label>-->
+<!--        <input type="text" id="licenseNumber" name="licenseNumber">-->
+<!--        <br>-->
+
+<!--        <label for="specialization">Specialization:</label>-->
+<!--        <input type="text" id="specialization" name="specialization">-->
+<!--        <br>-->
+
+<!--        <label for="phone">Phone Number:</label>-->
+<!--        <input type="text" id="phone" name="phone">-->
+<!--        <br>-->
+<!--    </div>-->
+
+<!--    <button type="submit">Signup</button>-->
+<!--</form>-->
+
+<!--<script>-->
+<!--    // Show/hide fields based on selected role-->
+<!--    const roleSelect = document.getElementById("role");-->
+<!--    roleSelect.addEventListener("change", function() {-->
+<!--        document.getElementById("patientFields").style.display = "none";-->
+<!--        document.getElementById("nurseFields").style.display = "none";-->
+<!--        document.getElementById("providerFields").style.display = "none";-->
+
+<!--        const selectedRole = this.value;-->
+<!--        if (selectedRole === "patient") {-->
+<!--            document.getElementById("patientFields").style.display = "block";-->
+<!--        } else if (selectedRole === "nurse") {-->
+<!--            document.getElementById("nurseFields").style.display = "block";-->
+<!--        } else if (selectedRole === "provider") {-->
+<!--            document.getElementById("providerFields").style.display = "block";-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

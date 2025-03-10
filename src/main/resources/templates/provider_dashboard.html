@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Provider Dashboard</title>
+    <script th:src="@{/resources/static/css/app.js}"></script>
+    <link rel="stylesheet" th:href="@{/HL.css/providerdashboard.css}">
+</head>
+<body>
+<header>
+    <h1>Welcome, Provider</h1>
+    <a th:href="@{/logout}" class="logout-btn">Logout</a>
+</header>
+
+<main class="container">
+    <!-- Notifications Section -->
+    <section class="notifications">
+        <h2>Notifications</h2>
+        <ul>
+            <li th:each="notification : ${notifications}" th:text="${notification}"></li>
+        </ul>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section class="search-filter">
+        <h2>Search Patients</h2>
+        <form th:action="@{/providers/dashboard}" method="GET">
+            <input type="text" name="search" placeholder="Search by name">
+
+            <select name="filterCondition">
+                <option value="">All Conditions</option>
+                <option th:each="condition : ${conditions}" th:value="${condition}" th:text="${condition}"></option>
+            </select>
+
+            <select name="filterGender">
+                <option value="">Any Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <select name="filterStatus">
+                <option value="">Any Status</option>
+                <option value="Admitted">Admitted</option>
+                <option value="Discharged">Discharged</option>
+            </select>
+
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <!-- Assigned Patients Section -->
+    <section class="patients">
+        <h2>Assigned Patients</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Condition</th>
+                <th>Contact</th>
+                <th>Emergency Contact</th>
+                <th>Medical History</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient : ${patients}">
+                <td th:text="${patient.name}"></td>
+                <td th:text="${patient.age}"></td>
+                <td th:text="${patient.gender}"></td>
+                <td th:text="${patient.condition}"></td>
+                <td th:text="${patient.phone}"></td>
+                <td th:text="${patient.emergencyContact}"></td>
+                <td th:text="${patient.medicalHistory}"></td>
+                <td>
+                    <a class="btn-view" th:href="@{/providers/patient/{id}(id=${patient.id})}">View</a>
+                    <form class="update-form" th:action="@{/providers/patient/update}" method="POST">
+                        <input type="hidden" name="patientId" th:value="${patient.id}">
+                        <input type="text" name="condition" placeholder="Update Condition">
+                        <button type="submit">Update</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>

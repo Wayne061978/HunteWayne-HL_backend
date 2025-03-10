@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthLink - Appointment Scheduling</title>
+    <link rel="stylesheet" th:href="@{/css/css/style.css}">
+    <script th:src="@{/js/script.js}" defer></script>
+</head>
+<body>
+
+<!-- Logo -->
+<img th:src="@{/images/s.logo.png}" alt="HealthLink Logo">
+
+<header>
+    <h1>Schedule an Appointment</h1>
+    <a th:href="@{/dashboard}">Back to Dashboard</a>
+</header>
+
+<main>
+    <form th:action="@{/schedule}" method="POST">
+
+        <!-- Dynamic Provider Selection -->
+        <label for="provider">Select Provider:</label>
+        <select id="provider" name="provider" required>
+            <option th:each="doctor : ${providers}"
+                    th:value="${doctor.id}"
+                    th:text="${doctor.name}">
+            </option>
+        </select>
+
+        <!-- Date Selection -->
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <!-- Time Selection -->
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
+
+        <!-- Submit Button -->
+        <button type="submit">Schedule</button>
+    </form>
+</main>
+
+</body>
+</html>

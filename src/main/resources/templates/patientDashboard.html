@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthLink - Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/css/style.css}">
+</head>
+<body>
+<header>
+    <h1>Dashboard</h1>
+    <nav>
+        <a th:href="@{/appointment}">Appointments</a>
+        <a th:href="@{/Health%20Records}">Health Records</a>
+        <a th:href="@{/Payment%20Page}">Payments</a>
+    </nav>
+</header>
+<main>
+    <h2>Welcome, <span th:text="${userName}">[User Name]</span></h2>
+    <p>Here are your upcoming appointments and health updates:</p>
+    <ul>
+        <li th:each="appointment : ${appointments}">
+            <span th:text="${appointment.date}">[Date]</span> -
+            <span th:text="${appointment.providerName}">[Provider]</span>
+        </li>
+    </ul>
+</main>
+<a th:href="@{/logout}">Logout</a>
+
+</body>
+</html>

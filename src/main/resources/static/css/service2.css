@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Basic Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header Section */
+header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+header .lead {
+    font-size: 20px;
+}
+
+/* Navigation */
+.navbar {
+    background-color: #007bff;
+    color: white;
+}
+
+/* .navbar .navbar-brand {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+} */
+
+.navbar .nav-link {
+    color: white;
+    font-size: 18px;
+    padding: 15px;
+}
+
+.navbar .nav-link.active {
+    color: #001aff;
+}
+
+.navbar .navbar-toggler-icon {
+    background-color: white;
+}
+
+/* Services Section */
+main.container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+}
+
+.card {
+    background-color: #f4f4f4;
+    padding: 0px;
+    width: 550px;
+    text-align: center;
+    border: 2px solid #007bff; /* Add border for the rectangle */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow effect */
+
+}
+
+.card .card-img-top {
+    width: 546px;
+    height: 280px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+/*
+.card .card-body {
+    padding: 20px;
+    text-align: center;
+} */
+
+.card .card-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.card .card-text {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 36px;
+    }
+
+    header .lead {
+        font-size: 18px;
+    }
+
+    .navbar .nav-link {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .card .card-body {
+        padding: 15px;
+    }
+
+    .card .card-title {
+        font-size: 18px;
+    }
+
+    .card .card-text {
+        font-size: 14px;
+    }
+}
