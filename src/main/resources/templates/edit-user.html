@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit User</title>
+    <link rel="stylesheet" th:href="@{/css/css/admin.css}">
+</head>
+<body>
+<div class="main-container">
+    <h2>Edit User</h2>
+
+    <!-- Display error message if user is not found -->
+    <p th:if="${error}" style="color: red;" th:text="${error}"></p>
+
+    <!-- Only show form if user exists -->
+    <form th:if="${user}" th:action="@{/admin_dashboard/update-user}" method="post">
+        <!-- Hidden Inputs -->
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="hidden" name="userType" th:value="${userType}">
+
+        <!-- Dynamically Set Name Field -->
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="name"
+               th:value="${userType == 'PATIENT' ? user.firstName : user.name}" required>
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="name"
+               th:value="${userType == 'PATIENT' ? user.lastName : user.name}" required>
+
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${user.email}" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" th:value="${user.phone ?: ''}">
+
+        <!-- Show extra fields based on user type -->
+        <div th:if="${userType == 'NURSE'}">
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" th:value="${user.department ?: ''}">
+        </div>
+
+        <div th:if="${userType == 'PROVIDER'}">
+            <label for="license">License Number:</label>
+            <input type="text" id="license" name="license" th:value="${user.licenseNumber ?: ''}">
+        </div>
+
+        <button type="submit">Update User</button>
+    </form>
+
+    <a th:href="@{/admin_dashboard}">Back to Dashboard</a>
+</div>
+</body>
+</html>

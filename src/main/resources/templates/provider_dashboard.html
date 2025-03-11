@@ -8,7 +8,8 @@
 </head>
 <body>
 <header>
-    <h1>Welcome, Provider</h1>
+    <h1>Welcome, <span th:text="${provider.name}"></span></h1>
+    <a th:href="@{/user/update-profile}">Update Profile</a>
 
 </header>
 

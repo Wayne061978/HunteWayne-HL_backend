@@ -341,22 +341,27 @@ public class SecurityConfig {
                         .requestMatchers("/", "/home", "/Contact", "/aboutUs").permitAll()
                         .requestMatchers("/patient_dashboard/patient").hasAuthority("ROLE_PATIENT") // ✅ Ensure correct role
                         .requestMatchers("/nurse_dashboard/nurse").hasAuthority("ROLE_NURSE")
-                        .requestMatchers("/provider_dashboard/provider").hasAuthority("ROLE_PROVIDER")
+                        .requestMatchers("/provider_dashboard/provider").hasRole("PROVIDER")
+                        .requestMatchers("/admin_dashboard/**").hasRole("ADMIN")  // ✅ Admin access
+
                         .requestMatchers("/public/**", "/login", "/signup/**", "/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .successHandler(customAuthenticationSuccessHandler()) // ✅ Ensure correct redirect
+                        .successHandler(customAuthenticationSuccessHandler())
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/login?logout")  // Redirect to login page after logout
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")  // Ensure session is cleared
                         .permitAll()
                 )
+
                 .exceptionHandling(ex -> ex
-                        .accessDeniedPage("/access-denied") // ✅ Redirect to a custom access denied page
+                        .accessDeniedPage("/access-denied")
                 );
 
         return http.build();
@@ -367,7 +372,10 @@ public class SecurityConfig {
     public AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
         return (request, response, authentication) -> {
             String redirectUrl = "/";
-            if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_PATIENT"))) {
+
+            if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"))) {
+                redirectUrl = "/admin_dashboard";  // ✅ Admin Redirect
+            } else if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_PATIENT"))) {
                 redirectUrl = "/patient_dashboard/patient";
             } else if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_NURSE"))) {
                 redirectUrl = "/nurse_dashboard/nurse";
@@ -375,8 +383,9 @@ public class SecurityConfig {
                 redirectUrl = "/provider_dashboard/provider";
             }
 
-            System.out.println("Redirecting to: " + redirectUrl);
+            System.out.println("🔄 Redirecting to: " + redirectUrl);
             response.sendRedirect(redirectUrl);
         };
     }
+
 }

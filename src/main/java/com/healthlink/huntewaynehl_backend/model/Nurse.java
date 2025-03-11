@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "nurses")
+@Table(name = "nurses", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Nurse {
 
     @Id
@@ -15,8 +15,10 @@ public class Nurse {
     private Long id;
 
     private String name;
+    @Column(unique = true, nullable = false)
     private String email;
     private String password;
+    private String phone;
     private String employeeId;
     private String department;
     private String role;
@@ -78,11 +80,19 @@ public class Nurse {
         this.role = role;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     public Office getOffice() {
         return office;
     }
 
     public void setOffice(Office office) {
         this.office = office;
+    }
+
+    public void setPhone(String phone) {
+
     }
 }

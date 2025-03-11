@@ -3,9 +3,11 @@ package com.healthlink.huntewaynehl_backend.service;
 import com.healthlink.huntewaynehl_backend.model.Admin;
 import com.healthlink.huntewaynehl_backend.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import jakarta.annotation.PostConstruct;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminService {
@@ -13,20 +15,20 @@ public class AdminService {
     @Autowired
     private AdminRepository adminRepository;
 
-    public Admin addAdmin(Admin admin) {
-        return adminRepository.save(admin);
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    public Admin getAdminById(Long id) {
-        return adminRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Admin not found with ID: " + id));
-    }
+    @PostConstruct
+    public void createAdminIfNotExists() {
+        Optional<Admin> existingAdmin = adminRepository.findByEmail("admin@example.com");
+        if (existingAdmin.isEmpty()) {
+            Admin admin = new Admin();
+            admin.setEmail("admin@example.com");
+            admin.setPassword(passwordEncoder.encode("Admin123")); // Hash the password
+            admin.setRole("ROLE_ADMIN");
 
-    public List<Admin> getAllAdmins() {
-        return adminRepository.findAll();
-    }
-
-    public void deleteAdmin(Long id) {
-        adminRepository.deleteById(id);
+            adminRepository.save(admin);
+            System.out.println("✅ Default admin created: admin@example.com / Admin123");
+        }
     }
 }

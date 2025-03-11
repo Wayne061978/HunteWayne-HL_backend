@@ -1,0 +1,192 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Update Profile</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>Update Your Profile</h2>-->
+
+<!--<form th:action="@{/user/update-profile}" method="post" th:object="${user}">-->
+<!--    <input type="hidden" name="userType" th:value="${userType}">-->
+
+<!--    <label for="firstName" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">First Name:</label>-->
+<!--    <input type="text" id="firstName" name="firstName" th:value="*{firstName}" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">-->
+
+<!--    <label for="lastName" th:if="${userType == 'PATIENT'}">Last Name:</label>-->
+<!--    <input type="text" id="lastName" name="lastName" th:value="*{lastName}" th:if="${userType == 'PATIENT'}">-->
+
+<!--    <label for="name" th:if="${userType == 'NURSE'}">Name:</label>-->
+<!--    <input type="text" id="name" name="name" th:value="*{name}" th:if="${userType == 'NURSE'}">-->
+
+<!--    <label for="phone" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">Phone:</label>-->
+<!--    <input type="text" id="phone" name="phone" th:value="*{phone}" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">-->
+
+<!--    <label for="address" th:if="${userType == 'PATIENT'}">Address:</label>-->
+<!--    <input type="text" id="address" name="address" th:value="*{address}" th:if="${userType == 'PATIENT'}">-->
+
+<!--    <label for="insurance" th:if="${userType == 'PATIENT'}">Insurance:</label>-->
+<!--    <input type="text" id="insurance" name="insurance" th:value="*{insurance}" th:if="${userType == 'PATIENT'}">-->
+
+<!--    <label for="department" th:if="${userType == 'NURSE'}">Department:</label>-->
+<!--    <input type="text" id="department" name="department" th:value="*{department}" th:if="${userType == 'NURSE'}">-->
+
+<!--    <label for="specialization" th:if="${userType == 'PROVIDER'}">Specialization:</label>-->
+<!--    <input type="text" id="specialization" name="specialization" th:value="*{specialization}" th:if="${userType == 'PROVIDER'}">-->
+
+<!--    <button type="submit">Update Profile</button>-->
+<!--</form>-->
+
+<!--<a th:href="@{/patient_dashboard/patient}" th:if="${userType == 'PATIENT'}">Back to Dashboard</a>-->
+<!--<a th:href="@{/nurse_dashboard/nurse}" th:if="${userType == 'NURSE'}">Back to Dashboard</a>-->
+<!--<a th:href="@{/provider_dashboard/provider}" th:if="${userType == 'PROVIDER'}">Back to Dashboard</a>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--    <title>Update Profile</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>Update Your Profile</h2>-->
+
+<!--<form th:action="@{/user/update-profile}" method="post" th:object="${user}">-->
+<!--    <input type="hidden" name="userType" th:value="${userType}">-->
+
+<!--    <label for="firstName" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">First Name:</label>-->
+<!--    <input type="text" id="firstName" name="firstName" th:field="*{firstName}" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">-->
+
+<!--    <label for="lastName" th:if="${userType == 'PATIENT'}">Last Name:</label>-->
+<!--    <input type="text" id="lastName" name="lastName" th:field="*{lastName}" th:if="${userType == 'PATIENT'}">-->
+
+<!--    <label for="name" th:if="${userType == 'NURSE'}">Name:</label>-->
+<!--    <input type="text" id="name" name="name" th:field="*{name}" th:if="${userType == 'NURSE'}">-->
+
+<!--    <label for="phone" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">Phone:</label>-->
+<!--    <input type="text" id="phone" name="phone" th:field="*{phone}" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">-->
+
+<!--    <label for="address" th:if="${userType == 'PATIENT'}">Address:</label>-->
+<!--    <input type="text" id="address" name="address" th:field="*{address}" th:if="${userType == 'PATIENT'}">-->
+
+<!--    <label for="insurance" th:if="${userType == 'PATIENT'}">Insurance:</label>-->
+<!--    <input type="text" id="insurance" name="insurance" th:field="*{insurance}" th:if="${userType == 'PATIENT'}">-->
+
+<!--    <label for="department" th:if="${userType == 'NURSE'}">Department:</label>-->
+<!--    <input type="text" id="department" name="department" th:field="*{department}" th:if="${userType == 'NURSE'}">-->
+
+<!--    <label for="specialization" th:if="${userType == 'PROVIDER'}">Specialization:</label>-->
+<!--    <input type="text" id="specialization" name="specialization" th:field="*{specialization}" th:if="${userType == 'PROVIDER'}">-->
+
+<!--    <button type="submit">Update Profile</button>-->
+<!--</form>-->
+
+<!--<a th:href="@{/patient_dashboard/patient}" th:if="${userType == 'PATIENT'}">Back to Dashboard</a>-->
+<!--<a th:href="@{/nurse_dashboard/nurse}" th:if="${userType == 'NURSE'}">Back to Dashboard</a>-->
+<!--<a th:href="@{/provider_dashboard/provider}" th:if="${userType == 'PROVIDER'}">Back to Dashboard</a>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Update Profile</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>Update Your Profile</h2>-->
+
+<!--<form th:action="@{/user/update-profile}" method="post" th:object="${user}">-->
+<!--    <input type="hidden" name="userType" th:value="${userType}">-->
+
+<!--    <label for="firstName" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">First Name:</label>-->
+<!--    <input type="text" id="firstName" name="firstName" th:field="*{firstName}" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">-->
+
+<!--    <label for="lastName" th:if="${userType == 'PATIENT'}">Last Name:</label>-->
+<!--    <input type="text" id="lastName" name="lastName" th:field="*{lastName}" th:if="${userType == 'PATIENT'}">-->
+
+<!--    <label for="name" th:if="${userType == 'NURSE' or userType == 'PROVIDER'}">Name:</label>-->
+<!--    <input type="text" id="name" name="name" th:field="*{name}" th:if="${userType == 'NURSE' or userType == 'PROVIDER'}">-->
+
+<!--    <label for="phone" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">Phone:</label>-->
+<!--    <input type="text" id="phone" name="phone" th:field="*{phone}" th:if="${userType == 'PATIENT' or userType == 'PROVIDER'}">-->
+
+<!--    <label for="address" th:if="${userType == 'PATIENT'}">Address:</label>-->
+<!--    <input type="text" id="address" name="address" th:field="*{address}" th:if="${userType == 'PATIENT'}">-->
+
+<!--    <label for="insurance" th:if="${userType == 'PATIENT'}">Insurance:</label>-->
+<!--    <input type="text" id="insurance" name="insurance" th:field="*{insurance}" th:if="${userType == 'PATIENT'}">-->
+
+<!--    <label for="department" th:if="${userType == 'NURSE'}">Department:</label>-->
+<!--    <input type="text" id="department" name="department" th:field="*{department}" th:if="${userType == 'NURSE'}">-->
+
+<!--    <label for="specialization" th:if="${userType == 'PROVIDER'}">Specialization:</label>-->
+<!--    <input type="text" id="specialization" name="specialization" th:field="*{specialization}" th:if="${userType == 'PROVIDER'}">-->
+
+<!--    <button type="submit">Update Profile</button>-->
+<!--</form>-->
+
+<!--<a th:href="@{/patient_dashboard/patient}" th:if="${userType == 'PATIENT'}">Back to Dashboard</a>-->
+<!--<a th:href="@{/nurse_dashboard/nurse}" th:if="${userType == 'NURSE'}">Back to Dashboard</a>-->
+<!--<a th:href="@{/provider_dashboard/provider}" th:if="${userType == 'PROVIDER'}">Back to Dashboard</a>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Profile</title>
+</head>
+<body>
+<h2>Update Your Profile</h2>
+
+<form th:action="@{/user/update-profile}" method="post" th:object="${user}">
+    <input type="hidden" name="userType" th:value="${userType}">
+
+    <!-- Patient Form -->
+    <div th:if="${userType == 'PATIENT'}">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" th:field="*{firstName}" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" th:field="*{lastName}" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" th:field="*{phone}" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" th:field="*{address}" required>
+
+        <label for="insurance">Insurance:</label>
+        <input type="text" id="insurance" name="insurance" th:field="*{insurance}">
+    </div>
+
+    <!-- Nurse Form -->
+    <div th:if="${userType == 'NURSE'}">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" th:field="*{department}" required>
+    </div>
+
+    <!-- Provider Form -->
+    <div th:if="${userType == 'PROVIDER'}">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required>
+
+        <label for="specialization">Specialization:</label>
+        <input type="text" id="specialization" name="specialization" th:field="*{specialization}" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" th:field="*{phone}" required>
+    </div>
+
+    <button type="submit">Update Profile</button>
+</form>
+
+<a th:href="@{/patient_dashboard/patient}" th:if="${userType == 'PATIENT'}">Back to Dashboard</a>
+<a th:href="@{/nurse_dashboard/nurse}" th:if="${userType == 'NURSE'}">Back to Dashboard</a>
+<a th:href="@{/provider_dashboard/provider}" th:if="${userType == 'PROVIDER'}">Back to Dashboard</a>
+</body>
+</html>
+
+

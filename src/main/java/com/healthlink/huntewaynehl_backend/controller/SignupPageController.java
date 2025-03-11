@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 /**
  * Controller responsible for handling user signups for Providers, Nurses, and Patients.
@@ -59,6 +60,12 @@ public class SignupPageController {
             @RequestParam("specialization") String specialization,
             Model model) {
 
+        Optional<Provider> existingProvider = providerRepository.findByEmailIgnoreCase(email);
+        if (existingProvider.isPresent()) {
+            model.addAttribute("error", "Email already exists. Please use a different email.");
+            return "signup";
+        }
+
         String encodedPassword = passwordEncoder.encode(password);
 
         Provider provider = new Provider();
@@ -90,6 +97,12 @@ public class SignupPageController {
             @RequestParam("EmployeeID") String EmployeeID,
             @RequestParam("department") String department,
             Model model) {
+
+        Optional<Nurse> existingNurse = nurseRepository.findByEmailIgnoreCase(email);
+        if (existingNurse.isPresent()) {
+            model.addAttribute("error", "Email already exists. Please use a different email.");
+            return "signup";
+        }
 
         String encodedPassword = passwordEncoder.encode(password);
 
@@ -127,6 +140,12 @@ public class SignupPageController {
             @RequestParam(value = "insurance", required = false) String insurance,
             @RequestParam(value = "ssn", required = false) String ssn,
             Model model) {
+
+        Optional<Patient> existingPatient = patientRepository.findByEmailIgnoreCase(email);
+        if (existingPatient.isPresent()) {
+            model.addAttribute("error", "Email already exists. Please use a different email.");
+            return "signup"; // Redirect back to signup page with error message
+        }
 
         String encodedPassword = passwordEncoder.encode(password);
 

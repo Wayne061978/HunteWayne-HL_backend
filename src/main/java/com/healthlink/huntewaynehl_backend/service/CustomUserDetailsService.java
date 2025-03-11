@@ -1,8 +1,10 @@
 package com.healthlink.huntewaynehl_backend.service;
 
+import com.healthlink.huntewaynehl_backend.model.Admin;
 import com.healthlink.huntewaynehl_backend.model.Nurse;
 import com.healthlink.huntewaynehl_backend.model.Patient;
 import com.healthlink.huntewaynehl_backend.model.Provider;
+import com.healthlink.huntewaynehl_backend.repository.AdminRepository;
 import com.healthlink.huntewaynehl_backend.repository.NurseRepository;
 import com.healthlink.huntewaynehl_backend.repository.PatientRepository;
 import com.healthlink.huntewaynehl_backend.repository.ProviderRepository;
@@ -24,6 +26,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     private static final Logger logger = Logger.getLogger(CustomUserDetailsService.class.getName());
 
     @Autowired
+    private AdminRepository adminRepository;
+
+    @Autowired
     private ProviderRepository providerRepository;
 
     @Autowired
@@ -32,9 +37,20 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private PatientRepository patientRepository;
 
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         logger.info("🔍 Attempting to authenticate user: " + email);
+
+        Optional<Admin> adminOpt = adminRepository.findByEmail(email);
+        if (adminOpt.isPresent()) {
+            Admin admin = adminOpt.get();
+            logger.info("✅ Admin found: " + admin.getEmail());
+            logger.info("🔑 Stored Hashed Password: " + admin.getPassword());
+
+            return new User(admin.getEmail(), admin.getPassword(),
+                    Collections.singletonList(new SimpleGrantedAuthority(admin.getRole())));
+        }
 
         Optional<Provider> providerOpt = providerRepository.findByEmailIgnoreCase(email);
         if (providerOpt.isPresent()) {

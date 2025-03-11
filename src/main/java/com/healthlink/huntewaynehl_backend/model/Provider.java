@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "providers")
+@Table(name = "providers", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Provider {
 
     @Id
@@ -19,6 +19,7 @@ public class Provider {
     @Setter
     @Getter
     private String name;
+    @Column(unique = true, nullable = false)
     private String email;
     private String password;
     private String licenseNumber;

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/css/admin.css}">
+</head>
+<body>
+<div class="main-container">
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+
+    <h2>Admin Dashboard</h2>
+    <p>Welcome, <span th:text="${adminEmail}"></span>!</p>
+
+    <h3>Manage Patients</h3>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}"></td>
+            <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
+            <td th:text="${patient.email}"></td>
+            <td>
+                <a th:href="@{/admin_dashboard/edit-patient/{id}(id=${patient.id})}">Edit</a>
+                <form th:action="@{/admin_dashboard/delete-patient/{id}(id=${patient.id})}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+
+    <h3>Manage Nurses</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="nurse : ${nurses}">
+            <td th:text="${nurse.id}"></td>
+            <td th:text="${nurse.name}"></td>
+            <td th:text="${nurse.email}"></td>
+            <td>
+                <a th:href="@{/admin_dashboard/edit-nurse/{id}(id=${nurse.id})}">Edit</a>
+                <form th:action="@{/admin_dashboard/delete-nurse/{id}(id=${nurse.id})}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Manage Providers</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="provider : ${providers}">
+            <td th:text="${provider.id}"></td>
+            <td th:text="${provider.name}"></td>
+            <td th:text="${provider.email}"></td>
+            <td>
+                <a th:href="@{/admin_dashboard/edit-provider/{id}(id=${provider.id})}">Edit</a>
+                <form th:action="@{/admin_dashboard/delete-provider/{id}(id=${provider.id})}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

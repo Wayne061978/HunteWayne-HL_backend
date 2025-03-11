@@ -27,6 +27,7 @@
 </head>
 <body>
 <div class="main-container">
+
     <div th:if="${message}" class="alert alert-success">
         <span th:text="${message}"></span>
     </div>
@@ -42,6 +43,7 @@
     </header>
 
     <img width="280" th:src="@{/css/images/1Small.png}" alt="HealthLink Logo">
+    <p th:if="${error}" style="color: red;" th:text="${error}"></p>
     <h1>User Signup</h1>
 
     <label for="role">Role:</label>

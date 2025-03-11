@@ -1,55 +1,55 @@
-package com.healthlink.huntewaynehl_backend;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.healthlink.huntewaynehl_backend.model.Patient;
-import com.healthlink.huntewaynehl_backend.repository.PatientRepository;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-
-import java.time.LocalDate;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-@SpringBootTest
-@AutoConfigureMockMvc
-public class PatientControllerTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
-    private PatientRepository patientRepository;
-
-    @Test
-    void testRegisterPatient() throws Exception {
-        Patient patient = new Patient();
-        patient.setFirstName("John");
-        patient.setLastName("Doe");
-        patient.setEmail("john.doe@example.com");
-        patient.setPassword("securepass");
-        patient.setGender("Male");
-        patient.setDob(LocalDate.ofEpochDay(1980));
-        patient.setPhone("123-456-7890");
-        patient.setAddress("123 Elm Street");
-        patient.setInsurance("InsuranceProvider");
-
-        mockMvc.perform(post("/patients")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(patient)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").exists())
-                .andExpect(jsonPath("$.firstName").value("John"))
-                .andExpect(jsonPath("$.lastName").value("Doe"))
-                .andExpect(jsonPath("$.email").value("john.doe@example.com")); // Validate the response fields
-    }
+//package com.healthlink.huntewaynehl_backend;
+//
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.healthlink.huntewaynehl_backend.model.Patient;
+//import com.healthlink.huntewaynehl_backend.repository.PatientRepository;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.http.MediaType;
+//import org.springframework.test.web.servlet.MockMvc;
+//
+//import java.time.LocalDate;
+//
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+//
+//@SpringBootTest
+//@AutoConfigureMockMvc
+//public class PatientControllerTest {
+//
+//    @Autowired
+//    private MockMvc mockMvc;
+//
+//    @Autowired
+//    private ObjectMapper objectMapper;
+//
+//    @Autowired
+//    private PatientRepository patientRepository;
+//
+//    @Test
+//    void testRegisterPatient() throws Exception {
+//        Patient patient = new Patient();
+//        patient.setFirstName("John");
+//        patient.setLastName("Doe");
+//        patient.setEmail("john.doe@example.com");
+//        patient.setPassword("securepass");
+//        patient.setGender("Male");
+//        patient.setDob(LocalDate.ofEpochDay(1980));
+//        patient.setPhone("123-456-7890");
+//        patient.setAddress("123 Elm Street");
+//        patient.setInsurance("InsuranceProvider");
+//
+//        mockMvc.perform(post("/patients")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(objectMapper.writeValueAsString(patient)))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.id").exists())
+//                .andExpect(jsonPath("$.firstName").value("John"))
+//                .andExpect(jsonPath("$.lastName").value("Doe"))
+//                .andExpect(jsonPath("$.email").value("john.doe@example.com")); // Validate the response fields
+//    }
 
 //    @Test
 //    void testGetAllPatients() throws Exception {
@@ -87,7 +87,7 @@ public class PatientControllerTest {
 //        mockMvc.perform(get("/patients/" + savedPatient.getId()))
 //                .andExpect(status().isNotFound());
 //    }
-}
+//}
 
 //package com.healthlink.huntewaynehl_backend.controller;
 

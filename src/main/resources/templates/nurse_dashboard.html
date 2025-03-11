@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Nurse Dashboard</title>
-  <link rel="stylesheet" th:href="@{/css/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/css/pDashboard.css}">
+
 </head>
 <body>
+<div class="main-container">
+  <a th:href="@{/user/update-profile}">Update Profile</a>
 <h1>Welcome, <span th:text="${nurse.name}"></span></h1>
 <h2>Your Dashboard</h2>
 <p>Manage your patients and appointments here.</p>
 <form th:action="@{/logout}" method="post">
   <button type="submit">Logout</button>
 </form>
+</div>
 </body>
 </html>

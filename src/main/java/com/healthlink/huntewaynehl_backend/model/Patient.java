@@ -18,8 +18,8 @@ import java.util.Set;
 @Setter
 @Data
 @Entity
-@Table(name = "patients")
-public class Patient  {
+@Table(name = "patients", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,7 @@ public class Patient  {
 
     private String firstName;
     private String lastName;
+    @Column(unique = true, nullable = false)
     private String email;
     private String password; // Encrypted password
     private String gender;
