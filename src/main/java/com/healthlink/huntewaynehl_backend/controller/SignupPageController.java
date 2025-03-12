@@ -74,14 +74,14 @@ public class SignupPageController {
         provider.setPassword(encodedPassword);
         provider.setLicenseNumber(license);
         provider.setSpecialization(specialization);
-        provider.setRole("PROVIDER"); // ✅ Assign Role Here
+        provider.setRole("PROVIDER"); 
 
         try {
             providerRepository.save(provider);
-            logger.info("✅ Provider registered with role: PROVIDER");
+            logger.info(" Provider registered with role: PROVIDER");
             return "redirect:/login";
         } catch (Exception e) {
-            logger.error("❌ Error saving provider: ", e);
+            logger.error(" Error saving provider: ", e);
             model.addAttribute("error", "Signup failed! Please try again.");
             return "signup";
         }
