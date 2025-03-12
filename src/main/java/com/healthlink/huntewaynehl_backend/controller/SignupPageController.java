@@ -112,14 +112,14 @@ public class SignupPageController {
         nurse.setPassword(encodedPassword);
         nurse.setEmployeeId(EmployeeID);
         nurse.setDepartment(department);
-        nurse.setRole("ROLE_NURSE"); // ✅ Assign Role Here
+        nurse.setRole("ROLE_NURSE"); 
 
         try {
             nurseRepository.save(nurse);
-            logger.info("✅ Nurse registered with role: ROLE_NURSE");
+            logger.info(" Nurse registered with role: ROLE_NURSE");
             return "redirect:/login";
         } catch (Exception e) {
-            logger.error("❌ Error saving nurse: ", e);
+            logger.error(" Error saving nurse: ", e);
             model.addAttribute("error", "Signup failed! Please try again.");
             return "signup";
         }
@@ -155,7 +155,7 @@ public class SignupPageController {
         patient.setLastName(lastName);
         patient.setEmail(email.toLowerCase());
         patient.setPassword(encodedPassword);
-        patient.setRole("PATIENT");  // ✅ Assign Role Here
+        patient.setRole("PATIENT");  
         patient.setGender(gender);
         patient.setPhone(phone);
         patient.setAddress(address);
@@ -164,10 +164,10 @@ public class SignupPageController {
 
         try {
             patientRepository.save(patient);
-            logger.info("✅ Patient registered with role: PATIENT");
+            logger.info(" Patient registered with role: PATIENT");
             return "redirect:/login";
         } catch (Exception e) {
-            logger.error("❌ Error saving patient: ", e);
+            logger.error(" Error saving patient: ", e);
             model.addAttribute("error", "Signup failed! Please try again.");
             return "signup";
         }
