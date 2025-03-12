@@ -28,7 +28,7 @@ public class AdminController {
     @Autowired
     private ProviderRepository providerRepository;
 
-    // ✅ Display Admin Dashboard
+    //  Display Admin Dashboard
     @GetMapping
     public String showAdminDashboard(Model model, Authentication authentication) {
         model.addAttribute("adminEmail", authentication.getName());
@@ -38,21 +38,21 @@ public class AdminController {
         return "admin-dashboard";
     }
 
-    // ✅ Delete Patient
+    //  Delete Patient
     @PostMapping("/delete-patient/{id}")
     public String deletePatient(@PathVariable Long id) {
         patientRepository.deleteById(id);
         return "redirect:/admin_dashboard?success=Patient deleted";
     }
 
-    // ✅ Delete Nurse
+    //  Delete Nurse
     @PostMapping("/delete-nurse/{id}")
     public String deleteNurse(@PathVariable Long id) {
         nurseRepository.deleteById(id);
         return "redirect:/admin_dashboard?success=Nurse deleted";
     }
 
-    // ✅ Delete Provider
+    //  Delete Provider
     @PostMapping("/delete-provider/{id}")
     public String deleteProvider(@PathVariable Long id) {
         providerRepository.deleteById(id);
@@ -66,7 +66,7 @@ public class AdminController {
         if (patient.isPresent()) {
             model.addAttribute("user", patient.get());
             model.addAttribute("userType", "PATIENT");
-            return "edit-user"; // ✅ Ensure this matches your Thymeleaf template name
+            return "edit-user"; 
         }
         return "redirect:/admin_dashboard?error=PatientNotFound";
     }
@@ -95,7 +95,7 @@ public class AdminController {
         return "redirect:/admin_dashboard?error=ProviderNotFound";
     }
 
-    // ✅ Handle User Update
+    //  Handle User Update
     @PostMapping("/update-user")
     public String updateUser(@RequestParam Long id, @RequestParam String userType,
                              @RequestParam String name, @RequestParam String email,
