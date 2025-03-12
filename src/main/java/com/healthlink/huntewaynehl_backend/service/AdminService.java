@@ -28,7 +28,7 @@ public class AdminService {
             admin.setRole("ROLE_ADMIN");
 
             adminRepository.save(admin);
-            System.out.println("✅ Default admin created: admin@example.com / Admin123");
+            System.out.println(" Default admin created: admin@example.com / Admin123");
         }
     }
 }
