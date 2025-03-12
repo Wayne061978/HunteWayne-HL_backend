@@ -14,10 +14,10 @@ public class AppointmentWebController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @GetMapping("/appointment") // ✅ Matches Thymeleaf link
+    @GetMapping("/appointment") //  Matches Thymeleaf link
     public String showAppointments(Model model) {
         List<Appointment> appointments = appointmentService.getAllAppointments();
         model.addAttribute("appointments", appointments);
-        return "appointment"; // ✅ Must match `appointment.html`
+        return "appointment"
     }
 }
